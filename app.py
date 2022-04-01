@@ -1,7 +1,7 @@
 import numpy as np
 from flask import Flask, request,render_template
 import pickle
-from collections.abc import Mapping
+from collections import MutableMapping
 
 app = Flask(__name__)
 model = pickle.load(open('model_fertilizer.pkl', 'rb'))
