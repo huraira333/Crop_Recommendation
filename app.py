@@ -4,7 +4,7 @@ import pickle
 
 
 model = pickle.load(open('model_fertilizer.pkl', 'rb'))
-app = Flask(_name_)
+app = Flask(__name__)
 
 
 @app.route('/',methods=['GET'])
@@ -22,5 +22,5 @@ def predict():
 
 
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     app.run(debug=True)
