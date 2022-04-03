@@ -6,20 +6,18 @@ import pickle
 model = pickle.load(open('model_fertilizer.pkl', 'rb'))
 app = Flask(__name__)
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+
 
 @app.route('/',methods=['GET'])
 def predict():
     
-    nitrogen = int(request.args['nitrogen'])
-    phosphorus = int(request.args['phosphorus'])
-    potassium = int(request.args['potassium'])
-    temprature = int(request.args['temprature'])
-    humidity = int(request.args['humidity'])
-    ph = int(request.args['ph'])
-    rainfall = int(request.args['rainfall'])
+    nitrogen = float(request.args['nitrogen'])
+    phosphorus = float(request.args['phosphorus'])
+    potassium = float(request.args['potassium'])
+    temprature = float(request.args['temprature'])
+    humidity = float(request.args['humidity'])
+    ph = float(request.args['ph'])
+    rainfall = float(request.args['rainfall'])
     pred = model.predict(np.array([nitrogen,phosphorus,potassium,temprature,humidity,ph,rainfall]).reshape(1,-1))
     return jsonify(prediction = str(pred))
 
